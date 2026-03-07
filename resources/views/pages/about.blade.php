@@ -133,13 +133,16 @@
 </div>
 </section>
 <!-- Call to Action -->
+@php
+    $aboutPhone = \App\Models\Setting::get('contact.phone', '832-466-1443');
+@endphp
 <section class="py-20 bg-background-dark text-white px-6">
 <div class="max-w-4xl mx-auto text-center">
 <h2 class="text-4xl font-black mb-8">Need a Reliable Medical Courier Partner?</h2>
 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-<a class="bg-primary text-background-dark px-10 py-4 rounded-lg font-bold text-lg hover:scale-105 transition-transform flex items-center justify-center gap-2" href="tel:832-466-1443">
+<a class="bg-primary text-background-dark px-10 py-4 rounded-lg font-bold text-lg hover:scale-105 transition-transform flex items-center justify-center gap-2" href="tel:{{ preg_replace('/[^0-9]/', '', $aboutPhone) }}">
 <span class="material-symbols-outlined">call</span>
-                    Call 832-466-1443
+                    Call {{ $aboutPhone }}
                 </a>
 <a class="border-2 border-primary text-primary px-10 py-4 rounded-lg font-bold text-lg hover:bg-primary/10 transition-colors flex items-center justify-center gap-2" href="{{ route('contact') }}#request-pickup">
 <span class="material-symbols-outlined">send</span>

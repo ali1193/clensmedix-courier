@@ -326,13 +326,17 @@
 <p class="text-slate-600 dark:text-slate-400 text-lg">Reach out for custom quotes or service inquiries.</p>
 </div>
 <div class="space-y-6">
+@php
+    $servicesPhone = \App\Models\Setting::get('contact.phone', '832-466-1443');
+    $servicesEmail = \App\Models\Setting::get('contact.email', 'info@clensmedix.com');
+@endphp
 <div class="flex items-center gap-4">
 <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
 <span class="material-symbols-outlined">call</span>
 </div>
 <div>
 <p class="text-sm text-slate-500 font-medium">Call Us Anytime</p>
-<p class="text-lg font-bold">832-466-1443</p>
+<p class="text-lg font-bold">{{ $servicesPhone }}</p>
 </div>
 </div>
 <div class="flex items-center gap-4">
@@ -341,7 +345,7 @@
 </div>
 <div>
 <p class="text-sm text-slate-500 font-medium">Email Us</p>
-<p class="text-lg font-bold">info@clensmedix.com</p>
+<p class="text-lg font-bold">{{ $servicesEmail }}</p>
 </div>
 </div>
 </div>

@@ -15,11 +15,14 @@
             <p class="hero-subtitle text-lg text-slate-600 dark:text-slate-400 mb-10 max-w-xl">
                 Delivering Excellence, One Mile at a Time. Secure, temperature-controlled transport for critical healthcare needs, serving hospitals, labs, and pharmacies.
             </p>
+            @php
+                $heroPhone = \App\Models\Setting::get('contact.phone', '832-466-1443');
+            @endphp
             <div class="hero-buttons flex flex-col sm:flex-row gap-4">
                 <a class="bg-primary text-background-dark px-8 py-4 rounded-xl font-bold text-lg shadow-lg shadow-primary/20 hover:scale-105 transition-transform text-center" href="{{ route('contact') }}#request-pickup">Request a Pickup</a>
-                <a class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-8 py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 hover:bg-slate-50 transition-colors" href="tel:832-466-1443">
+                <a class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-8 py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 hover:bg-slate-50 transition-colors" href="tel:{{ preg_replace('/[^0-9]/', '', $heroPhone) }}">
                     <span class="material-symbols-outlined">call</span>
-                    832-466-1443
+                    {{ $heroPhone }}
                 </a>
             </div>
         </div>

@@ -7,17 +7,14 @@
 <img src="{{ asset('images/logo.png') }}" alt="ClensMedix Courier Logo" class="h-14 w-auto">
 </div>
 <p class="max-w-sm mb-6">Redefining medical logistics with a focus on precision, speed, and safety for the healthcare industry of Texas.</p>
-<!-- <div class="flex gap-4">
-<a class="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center hover:border-primary hover:bg-primary/10 transition-all" href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="ClensMedix on Facebook">
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center hover:border-primary hover:bg-primary/10 transition-all" href="https://www.facebook.com/share/1LtCESF73U/" target="_blank" rel="noopener" aria-label="ClensMedix on Facebook">
 <img src="{{ asset('images/icon-facebook.svg') }}" alt="Facebook" class="h-5 w-5">
 </a>
-<a class="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center hover:border-primary hover:bg-primary/10 transition-all" href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="ClensMedix on Instagram">
+<a class="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center hover:border-primary hover:bg-primary/10 transition-all" href="https://www.instagram.com/clensmedix_stars" target="_blank" rel="noopener" aria-label="ClensMedix on Instagram">
 <img src="{{ asset('images/icon-instagram.svg') }}" alt="Instagram" class="h-5 w-5">
 </a>
-<a class="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center hover:border-primary hover:bg-primary/10 transition-all" href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="ClensMedix on LinkedIn">
-<img src="{{ asset('images/icon-linkedin.svg') }}" alt="LinkedIn" class="h-5 w-5">
-</a>
-</div> -->
+</div>
 </div>
 <div>
 <h4 class="text-white font-bold mb-6">Company</h4>

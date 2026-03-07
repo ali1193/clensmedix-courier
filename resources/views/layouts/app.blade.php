@@ -29,8 +29,12 @@
                 <a class="text-sm font-semibold hover:text-primary transition-colors {{ request()->routeIs('services') ? 'text-primary' : '' }}" href="{{ route('services') }}">Services</a>
                 <a class="text-sm font-semibold hover:text-primary transition-colors {{ request()->routeIs('contact') ? 'text-primary' : '' }}" href="{{ route('contact') }}">Contact</a>
             </nav>
+            @php
+                $globalPhone = \App\Models\Setting::get('contact.phone', '832-466-1443');
+                $globalEmail = \App\Models\Setting::get('contact.email', 'Clensmedix@gmail.com');
+            @endphp
             <div class="flex items-center gap-4">
-                <a class="hidden lg:block text-sm font-bold text-slate-700 dark:text-slate-300 hover:text-primary transition-colors" href="tel:832-466-1443">832-466-1443</a>
+                <a class="hidden lg:block text-sm font-bold text-slate-700 dark:text-slate-300 hover:text-primary transition-colors" href="tel:{{ preg_replace('/[^0-9]/', '', $globalPhone) }}">{{ $globalPhone }}</a>
                 <a href="{{ route('contact') }}" class="hidden sm:block bg-primary text-background-dark px-5 py-2.5 rounded-lg font-bold text-sm hover:brightness-95 transition-all">Request a Pickup</a>
                 <button id="mobile-menu-btn" type="button" class="md:hidden text-slate-900 dark:text-white p-2 focus:outline-none">
                     <span class="material-symbols-outlined text-3xl">menu</span>

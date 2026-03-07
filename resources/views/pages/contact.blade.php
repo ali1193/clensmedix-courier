@@ -51,13 +51,17 @@
 <section class="py-16 bg-white dark:bg-background-dark" id="contact-options">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="grid md:grid-cols-3 gap-8">
+@php
+    $contactPhone = \App\Models\Setting::get('contact.phone', '832-466-1443');
+    $contactEmail = \App\Models\Setting::get('contact.email', 'Clensmedix@gmail.com');
+@endphp
 <div class="group p-8 rounded-2xl border border-slate-100 dark:border-slate-800 bg-background-light dark:bg-slate-900/50 hover:border-primary transition-colors">
 <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-slate-900 transition-colors">
 <span class="material-symbols-outlined">call</span>
 </div>
 <h3 class="text-xl font-bold mb-2">Call Us</h3>
 <p class="text-slate-600 dark:text-slate-400 mb-4">Available for urgent dispatch and inquiries.</p>
-<a class="text-primary font-bold text-lg hover:underline transition-all" href="tel:8324661443">832-466-1443</a>
+<a class="text-primary font-bold text-lg hover:underline transition-all" href="tel:{{ preg_replace('/[^0-9]/', '', $contactPhone) }}">{{ $contactPhone }}</a>
 </div>
 <div class="group p-8 rounded-2xl border border-slate-100 dark:border-slate-800 bg-background-light dark:bg-slate-900/50 hover:border-primary transition-colors">
 <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-slate-900 transition-colors">
@@ -65,7 +69,7 @@
 </div>
 <h3 class="text-xl font-bold mb-2">Email Us</h3>
 <p class="text-slate-600 dark:text-slate-400 mb-4">Send us your documentation or general questions.</p>
-<a class="text-primary font-bold text-lg hover:underline transition-all" href="mailto:Clensmedix@gmail.com">Clensmedix@gmail.com</a>
+<a class="text-primary font-bold text-lg hover:underline transition-all" href="mailto:{{ $contactEmail }}">{{ $contactEmail }}</a>
 </div>
 <div class="group p-8 rounded-2xl border border-slate-100 dark:border-slate-800 bg-background-light dark:bg-slate-900/50 hover:border-primary transition-colors">
 <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-slate-900 transition-colors">

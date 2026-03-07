@@ -5,13 +5,17 @@
 <h2 class="text-4xl font-black mb-6">Get in Touch</h2>
 <p class="text-slate-600 dark:text-slate-400 mb-12">Have questions about our rates or specialized service capabilities? Fill out the form and our logistics coordinator will contact you within 15 minutes.</p>
 <div class="space-y-8">
+@php
+    $quotePhone = \App\Models\Setting::get('contact.phone', '832-466-1443');
+    $quoteEmail = \App\Models\Setting::get('contact.email', 'Clensmedix@gmail.com');
+@endphp
 <div class="flex items-start gap-4">
 <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary shrink-0">
 <span class="material-symbols-outlined">call</span>
 </div>
 <div>
 <h4 class="font-bold text-lg">Phone</h4>
-<p class="text-slate-500">832-466-1443</p>
+<p class="text-slate-500">{{ $quotePhone }}</p>
 </div>
 </div>
 <div class="flex items-start gap-4">
@@ -20,7 +24,7 @@
 </div>
 <div>
 <h4 class="font-bold text-lg">Email</h4>
-<p class="text-slate-500">Clensmedix@gmail.com</p>
+<p class="text-slate-500">{{ $quoteEmail }}</p>
 </div>
 </div>
 <div class="flex items-start gap-4">
