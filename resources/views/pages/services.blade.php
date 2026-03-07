@@ -16,18 +16,18 @@
                     Professional, secure, and time-critical medical deliveries you can rely on. Ensuring the integrity of every shipment.
                 </p>
 <div class="flex flex-wrap gap-4">
-<button class="bg-primary text-background-dark px-8 py-4 rounded-xl font-bold text-lg hover:shadow-lg hover:shadow-primary/20 transition-all">
+<a class="bg-primary text-background-dark px-8 py-4 rounded-xl font-bold text-lg hover:shadow-lg hover:shadow-primary/20 transition-all inline-block" href="{{ route('contact') }}#request-pickup">
                         Get Started
-                    </button>
-<button class="bg-white/10 backdrop-blur-md border border-white/20 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/20 transition-all">
+                    </a>
+<a class="bg-white/10 backdrop-blur-md border border-white/20 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/20 transition-all inline-block" href="#services-grid">
                         Learn More
-                    </button>
-<button class="bg-white/10 backdrop-blur-md border border-white/20 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/20 transition-all">Get Quote</button></div>
+                    </a>
+<a class="bg-white/10 backdrop-blur-md border border-white/20 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/20 transition-all inline-block" href="{{ route('contact') }}#request-pickup">Get Quote</a></div>
 </div>
 </div>
 </section>
 <!-- Medical Specimen Transport -->
-<section class="py-24 bg-white dark:bg-background-dark">
+<section class="py-24 bg-white dark:bg-background-dark" id="specimen">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="grid lg:grid-cols-2 gap-16 items-center">
 <div class="relative group">
@@ -59,7 +59,7 @@
 </div>
 </section>
 <!-- Pharmaceutical Delivery -->
-<section class="py-24 bg-background-light dark:bg-slate-900/50">
+<section class="py-24 bg-background-light dark:bg-slate-900/50" id="pharmacy">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="grid lg:grid-cols-2 gap-16 items-center">
 <div class="order-2 lg:order-1 space-y-6">
@@ -80,7 +80,7 @@
 </div>
 </section>
 <!-- Services Grid Section -->
-<section class="py-24 bg-white dark:bg-background-dark">
+<section class="py-24 bg-white dark:bg-background-dark" id="services-grid">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="text-center mb-16">
 <h2 class="text-4xl font-black text-slate-900 dark:text-white mb-4">Our Specialized Services</h2>
@@ -240,7 +240,7 @@
 <div class="space-y-4">
 <!-- FAQ Item 1 -->
 <div class="border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden">
-<button class="w-full flex items-center justify-between p-6 text-left bg-background-light dark:bg-slate-900/50 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors group">
+<button type="button" class="w-full flex items-center justify-between p-6 text-left bg-background-light dark:bg-slate-900/50 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors group">
 <span class="text-lg font-bold text-slate-900 dark:text-white">How do you ensure HIPAA compliance during transport?</span>
 <span class="material-symbols-outlined text-primary group-hover:rotate-180 transition-transform">expand_more</span>
 </button>
@@ -252,7 +252,7 @@
 </div>
 <!-- FAQ Item 2 -->
 <div class="border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden">
-<button class="w-full flex items-center justify-between p-6 text-left bg-background-light dark:bg-slate-900/50 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors group">
+<button type="button" class="w-full flex items-center justify-between p-6 text-left bg-background-light dark:bg-slate-900/50 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors group">
 <span class="text-lg font-bold text-slate-900 dark:text-white">What are your protocols for OSHA-regulated biohazardous materials?</span>
 <span class="material-symbols-outlined text-primary group-hover:rotate-180 transition-transform">expand_more</span>
 </button>
@@ -264,7 +264,7 @@
 </div>
 <!-- FAQ Item 3 -->
 <div class="border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden">
-<button class="w-full flex items-center justify-between p-6 text-left bg-background-light dark:bg-slate-900/50 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors group">
+<button type="button" class="w-full flex items-center justify-between p-6 text-left bg-background-light dark:bg-slate-900/50 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors group">
 <span class="text-lg font-bold text-slate-900 dark:text-white">How is temperature-sensitive cargo monitored?</span>
 <span class="material-symbols-outlined text-primary group-hover:rotate-180 transition-transform">expand_more</span>
 </button>
@@ -276,7 +276,7 @@
 </div>
 <!-- FAQ Item 4 -->
 <div class="border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden">
-<button class="w-full flex items-center justify-between p-6 text-left bg-background-light dark:bg-slate-900/50 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors group">
+<button type="button" class="w-full flex items-center justify-between p-6 text-left bg-background-light dark:bg-slate-900/50 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors group">
 <span class="text-lg font-bold text-slate-900 dark:text-white">What certifications do your drivers hold?</span>
 <span class="material-symbols-outlined text-primary group-hover:rotate-180 transition-transform">expand_more</span>
 </button>
@@ -288,7 +288,7 @@
 </div>
 <!-- FAQ Item 5 -->
 <div class="border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden">
-<button class="w-full flex items-center justify-between p-6 text-left bg-background-light dark:bg-slate-900/50 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors group">
+<button type="button" class="w-full flex items-center justify-between p-6 text-left bg-background-light dark:bg-slate-900/50 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors group">
 <span class="text-lg font-bold text-slate-900 dark:text-white">Do you provide chain-of-custody documentation?</span>
 <span class="material-symbols-outlined text-primary group-hover:rotate-180 transition-transform">expand_more</span>
 </button>
@@ -305,13 +305,13 @@
 <div class="relative z-10">
 <h2 class="text-3xl md:text-5xl font-black text-background-dark mb-8">Need a Medical Courier Service Today?</h2>
 <div class="flex flex-wrap justify-center gap-6">
-<button class="bg-background-dark text-white px-10 py-4 rounded-xl font-black text-lg hover:scale-105 transition-transform">
+<a class="bg-background-dark text-white px-10 py-4 rounded-xl font-black text-lg hover:scale-105 transition-transform inline-block" href="tel:832-466-1443">
                             Call 832-466-1443
-                        </button>
-<button class="bg-white text-background-dark px-10 py-4 rounded-xl font-black text-lg hover:scale-105 transition-transform shadow-xl">
+                        </a>
+<a class="bg-white text-background-dark px-10 py-4 rounded-xl font-black text-lg hover:scale-105 transition-transform shadow-xl inline-block" href="{{ route('contact') }}#request-pickup">
                             Request Pickup
-                        </button>
-<button class="bg-transparent border-2 border-background-dark text-background-dark px-10 py-4 rounded-xl font-black text-lg hover:bg-background-dark hover:text-white transition-all">Get Quote</button></div>
+                        </a>
+<a class="bg-transparent border-2 border-background-dark text-background-dark px-10 py-4 rounded-xl font-black text-lg hover:bg-background-dark hover:text-white transition-all inline-block" href="{{ route('contact') }}#request-pickup">Get Quote</a></div>
 </div>
 </div>
 </div>
@@ -347,30 +347,37 @@
 </div>
 </div>
 <div class="bg-background-light dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800">
-<form class="space-y-4">
+@if (session('success'))
+<div class="mb-6 rounded-xl border border-primary/30 bg-primary/10 p-4 text-sm font-semibold text-slate-900 dark:text-slate-100">
+{{ session('success') }}
+</div>
+@endif
+<form class="space-y-4" method="POST" action="{{ route('contact.submit') }}">
+@csrf
+<input type="hidden" name="source" value="services_page">
 <div class="grid grid-cols-2 gap-4">
 <div>
 <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Name</label>
-<input class="w-full bg-white dark:bg-background-dark border-slate-200 dark:border-slate-800 rounded-lg p-3 focus:ring-primary focus:border-primary" placeholder="John Doe" type="text"/>
+<input class="w-full border bg-white dark:bg-background-dark border-slate-200 dark:border-slate-800 rounded-lg p-3 focus:ring-primary focus:border-primary" placeholder="John Doe" type="text" name="name" required/>
 </div>
 <div>
 <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Phone</label>
-<input class="w-full bg-white dark:bg-background-dark border-slate-200 dark:border-slate-800 rounded-lg p-3 focus:ring-primary focus:border-primary" placeholder="(000) 000-0000" type="tel"/>
+<input class="w-full border bg-white dark:bg-background-dark border-slate-200 dark:border-slate-800 rounded-lg p-3 focus:ring-primary focus:border-primary" placeholder="(000) 000-0000" type="tel" name="phone"/>
 </div>
 </div>
 <div>
 <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Pickup Location</label>
-<input class="w-full bg-white dark:bg-background-dark border-slate-200 dark:border-slate-800 rounded-lg p-3 focus:ring-primary focus:border-primary" placeholder="Street, City, State" type="text"/>
+<input class="w-full border bg-white dark:bg-background-dark border-slate-200 dark:border-slate-800 rounded-lg p-3 focus:ring-primary focus:border-primary" placeholder="Street, City, State" type="text" name="pickup_location"/>
 </div>
 <div>
 <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Delivery Location</label>
-<input class="w-full bg-white dark:bg-background-dark border-slate-200 dark:border-slate-800 rounded-lg p-3 focus:ring-primary focus:border-primary" placeholder="Street, City, State" type="text"/>
+<input class="w-full border bg-white dark:bg-background-dark border-slate-200 dark:border-slate-800 rounded-lg p-3 focus:ring-primary focus:border-primary" placeholder="Street, City, State" type="text" name="delivery_location"/>
 </div>
 <div>
 <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Message</label>
-<textarea class="w-full bg-white dark:bg-background-dark border-slate-200 dark:border-slate-800 rounded-lg p-3 focus:ring-primary focus:border-primary" placeholder="How can we help you?" rows="4"></textarea>
+<textarea class="w-full border bg-white dark:bg-background-dark border-slate-200 dark:border-slate-800 rounded-lg p-3 focus:ring-primary focus:border-primary" placeholder="How can we help you?" rows="4" name="message"></textarea>
 </div>
-<button class="w-full bg-primary text-background-dark font-black py-4 rounded-lg hover:bg-primary/90 transition-colors uppercase tracking-widest">
+<button type="submit" class="w-full bg-primary text-background-dark font-black py-4 rounded-lg hover:bg-primary/90 transition-colors uppercase tracking-widest">
                             Send Message
                         </button>
 </form>

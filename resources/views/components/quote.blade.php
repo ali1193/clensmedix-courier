@@ -35,30 +35,37 @@
 </div>
 </div>
 <div class="bg-white dark:bg-slate-900 p-8 lg:p-12 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl">
-<form class="space-y-6">
+@if (session('success'))
+<div class="mb-6 rounded-xl border border-primary/30 bg-primary/10 p-4 text-sm font-semibold text-slate-900 dark:text-slate-100">
+{{ session('success') }}
+</div>
+@endif
+<form class="space-y-6" method="POST" action="{{ route('contact.submit') }}">
+@csrf
+<input type="hidden" name="source" value="home_quote">
 <div class="grid sm:grid-cols-2 gap-6">
 <div>
 <label class="block text-sm font-bold mb-2">Full Name</label>
-<input class="w-full bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg p-3 focus:ring-primary focus:border-primary" placeholder="John Doe" type="text"/>
+<input class="w-full border bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg p-3 focus:ring-primary focus:border-primary" placeholder="John Doe" type="text" name="name" required/>
 </div>
 <div>
 <label class="block text-sm font-bold mb-2">Phone Number</label>
-<input class="w-full bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg p-3 focus:ring-primary focus:border-primary" placeholder="(000) 000-0000" type="tel"/>
+<input class="w-full border bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg p-3 focus:ring-primary focus:border-primary" placeholder="(000) 000-0000" type="tel" name="phone"/>
 </div>
 </div>
 <div class="grid sm:grid-cols-2 gap-6">
 <div>
 <label class="block text-sm font-bold mb-2">Pickup Location</label>
-<input class="w-full bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg p-3 focus:ring-primary focus:border-primary" placeholder="Zip or City" type="text"/>
+<input class="w-full border bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg p-3 focus:ring-primary focus:border-primary" placeholder="Zip or City" type="text" name="pickup_location"/>
 </div>
 <div>
 <label class="block text-sm font-bold mb-2">Delivery Destination</label>
-<input class="w-full bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg p-3 focus:ring-primary focus:border-primary" placeholder="Zip or City" type="text"/>
+<input class="w-full border bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg p-3 focus:ring-primary focus:border-primary" placeholder="Zip or City" type="text" name="delivery_location"/>
 </div>
 </div>
 <div>
 <label class="block text-sm font-bold mb-2">Message / Special Instructions</label>
-<textarea class="w-full bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg p-3 focus:ring-primary focus:border-primary" placeholder="How can we help you?" rows="4"></textarea>
+<textarea class="w-full border bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg p-3 focus:ring-primary focus:border-primary" placeholder="How can we help you?" rows="4" name="message"></textarea>
 </div>
 <button class="w-full bg-primary text-background-dark font-black py-4 rounded-xl text-lg hover:brightness-110 transition-all" type="submit">Send Message</button>
 </form>

@@ -10,7 +10,7 @@
 <span class="material-symbols-outlined">call</span>
                         Call 832-466-1443
                     </a>
-<button class="bg-white text-background-dark px-10 py-4 rounded-xl font-bold text-lg hover:bg-slate-100 transition-all">Schedule a Consultation</button>
+<a class="bg-white text-background-dark px-10 py-4 rounded-xl font-bold text-lg hover:bg-slate-100 transition-all text-center" href="{{ route('contact') }}#request-pickup">Schedule a Consultation</a>
 </div>
 </div>
 </div>

@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ClensMedix Courier LLC | Reliable Medical Logistics</title>
+
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,7 +32,7 @@
             <div class="flex items-center gap-4">
                 <a class="hidden lg:block text-sm font-bold text-slate-700 dark:text-slate-300 hover:text-primary transition-colors" href="tel:832-466-1443">832-466-1443</a>
                 <a href="{{ route('contact') }}" class="hidden sm:block bg-primary text-background-dark px-5 py-2.5 rounded-lg font-bold text-sm hover:brightness-95 transition-all">Request a Pickup</a>
-                <button id="mobile-menu-btn" class="md:hidden text-slate-900 dark:text-white p-2 focus:outline-none">
+                <button id="mobile-menu-btn" type="button" class="md:hidden text-slate-900 dark:text-white p-2 focus:outline-none">
                     <span class="material-symbols-outlined text-3xl">menu</span>
                 </button>
             </div>

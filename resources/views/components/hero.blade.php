@@ -16,7 +16,7 @@
                 Delivering Excellence, One Mile at a Time. Secure, temperature-controlled transport for critical healthcare needs, serving hospitals, labs, and pharmacies.
             </p>
             <div class="hero-buttons flex flex-col sm:flex-row gap-4">
-                <button class="bg-primary text-background-dark px-8 py-4 rounded-xl font-bold text-lg shadow-lg shadow-primary/20 hover:scale-105 transition-transform">Request a Pickup</button>
+                <a class="bg-primary text-background-dark px-8 py-4 rounded-xl font-bold text-lg shadow-lg shadow-primary/20 hover:scale-105 transition-transform text-center" href="{{ route('contact') }}#request-pickup">Request a Pickup</a>
                 <a class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-8 py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 hover:bg-slate-50 transition-colors" href="tel:832-466-1443">
                     <span class="material-symbols-outlined">call</span>
                     832-466-1443

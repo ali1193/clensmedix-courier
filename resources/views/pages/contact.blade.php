@@ -21,17 +21,17 @@
                                 Reliable medical courier services ready to support your healthcare delivery needs. We bridge the gap between clinics, labs, and patients.
                             </p>
 <div class="flex flex-wrap gap-4">
-<button class="bg-primary text-slate-900 px-8 py-4 rounded-xl text-base font-bold hover:scale-[1.02] transition-transform">
+<a class="bg-primary text-slate-900 px-8 py-4 rounded-xl text-base font-bold hover:scale-[1.02] transition-transform inline-block" href="#request-pickup">
                                     Get Started
-                                </button>
-<button class="border-2 border-slate-200 dark:border-slate-700 px-8 py-4 rounded-xl text-base font-bold hover:bg-white dark:hover:bg-slate-800 transition-colors">
+                                </a>
+<a class="border-2 border-slate-200 dark:border-slate-700 px-8 py-4 rounded-xl text-base font-bold hover:bg-white dark:hover:bg-slate-800 transition-colors inline-block" href="#contact-options">
                                     Our Network
-                                </button>
+                                </a>
 </div>
 </div>
 <div class="relative">
-<div class="aspect-video lg:aspect-square rounded-3xl overflow-hidden shadow-2xl border-8 border-white dark:border-slate-800">
-<img alt="Medical Courier Service" class="w-full h-full object-cover" data-alt="Medical courier driver standing next to a professional delivery van" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4IMiwfZt7qz3UccA8hdnYL87VUzTlFdVwPb6sCOnWpENGLtI2S_3pV8_6ks5hewNJBO2R8549NEI74T4XPR61Jgsl1UP2JKXAP0rh6cwfRctncra5F4IxZ7__xdaPpc_1X2HmyVgU_UdmrN45fSODjtHvZmCL2r33qCIm3cWi0T8Srgke6dRwbrJ6S2ElUvxJaT6SLA9hfHdx2vVNgDjzbirsWtoiKa6lhGCQksRZKkt0RZLMbg_ZQfoQXYaOCD3k_gcJjxWBM0U"/>
+<div class="aspect-video lg:aspect-square rounded-3xl overflow-hidden shadow-2xl border-8 border-white dark:border-slate-800 bg-primary/5">
+<img alt="ClensMedix Courier Services branding" class="w-full h-full object-cover" src="{{ asset('images/contact-us.jpg') }}"/>
 </div>
 <div class="absolute -bottom-6 -left-6 bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-xl hidden md:block">
 <div class="flex items-center gap-4">
@@ -48,7 +48,7 @@
 </div>
 </div>
 </section>
-<section class="py-16 bg-white dark:bg-background-dark">
+<section class="py-16 bg-white dark:bg-background-dark" id="contact-options">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="grid md:grid-cols-3 gap-8">
 <div class="group p-8 rounded-2xl border border-slate-100 dark:border-slate-800 bg-background-light dark:bg-slate-900/50 hover:border-primary transition-colors">
@@ -88,38 +88,45 @@
 </div>
 <div class="p-8 md:p-12 lg:p-16">
 <div class="mb-10">
-<h2 class="text-3xl font-black text-slate-900 dark:text-white mb-4">Request a Pickup</h2>
+<h2 class="text-3xl font-black text-slate-900 dark:text-white mb-4" id="request-pickup">Request a Pickup</h2>
 <p class="text-slate-500 dark:text-slate-400">Fill out the form below to schedule a medical transport. Our team will confirm within 15 minutes.</p>
 </div>
-<form action="#" class="space-y-6">
+@if (session('success'))
+<div class="mb-6 rounded-xl border border-primary/30 bg-primary/10 p-4 text-sm font-semibold text-slate-900 dark:text-slate-100">
+{{ session('success') }}
+</div>
+@endif
+<form action="{{ route('contact.submit') }}" method="POST" class="space-y-6">
+@csrf
+<input type="hidden" name="source" value="contact_page">
 <div class="grid md:grid-cols-2 gap-6">
 <div class="space-y-2">
 <label class="text-sm font-semibold">Full Name</label>
-<input class="w-full rounded-lg border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-primary" placeholder="John Doe" type="text"/>
+<input class="w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-primary" placeholder="John Doe" type="text" name="name" required/>
 </div>
 <div class="space-y-2">
 <label class="text-sm font-semibold">Phone Number</label>
-<input class="w-full rounded-lg border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-primary" placeholder="832-000-0000" type="tel"/>
+<input class="w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-primary" placeholder="832-000-0000" type="tel" name="phone"/>
 </div>
 </div>
 <div class="space-y-2">
 <label class="text-sm font-semibold">Email</label>
-<input class="w-full rounded-lg border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-primary" placeholder="john@clinic.com" type="email"/>
+<input class="w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-primary" placeholder="john@clinic.com" type="email" name="email"/>
 </div>
 <div class="grid md:grid-cols-2 gap-6">
 <div class="space-y-2">
 <label class="text-sm font-semibold">Pickup Location</label>
-<input class="w-full rounded-lg border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-primary" placeholder="Facility Address" type="text"/>
+<input class="w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-primary" placeholder="Facility Address" type="text" name="pickup_location"/>
 </div>
 <div class="space-y-2">
 <label class="text-sm font-semibold">Delivery Location</label>
-<input class="w-full rounded-lg border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-primary" placeholder="Destination Address" type="text"/>
+<input class="w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-primary" placeholder="Destination Address" type="text" name="delivery_location"/>
 </div>
 </div>
 <div class="grid md:grid-cols-2 gap-6">
 <div class="space-y-2">
 <label class="text-sm font-semibold">Package Type</label>
-<select class="w-full rounded-lg border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-primary">
+<select class="w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-primary" name="package_type">
 <option>Medical Sample</option>
 <option>Equipment</option>
 <option>Pharmaceutical</option>
@@ -127,12 +134,12 @@
 </div>
 <div class="space-y-2">
 <label class="text-sm font-semibold">Preferred Pickup Time</label>
-<input class="w-full rounded-lg border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-primary" type="time"/>
+<input class="w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-primary" type="time" name="preferred_pickup_time"/>
 </div>
 </div>
 <div class="space-y-2">
 <label class="text-sm font-semibold">Message / Special Instructions</label>
-<textarea class="w-full rounded-lg border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-primary" placeholder="Room number, contact person, or urgency..." rows="4"></textarea>
+<textarea class="w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-primary" placeholder="Room number, contact person, or urgency..." rows="4" name="message"></textarea>
 </div>
 <button class="w-full bg-primary text-slate-900 py-4 rounded-xl text-lg font-bold hover:shadow-lg hover:shadow-primary/20 transition-all" type="submit">
                                         Submit Request

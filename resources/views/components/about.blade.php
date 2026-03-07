@@ -5,7 +5,7 @@
 <div class="lg:w-1/3">
 <h2 class="text-4xl font-black mb-6">Why Partners Choose Us</h2>
 <p class="text-slate-400 mb-8">We aren't just a delivery service; we are an extension of your healthcare team, committed to patient care through logistical excellence.</p>
-<button class="bg-primary text-background-dark px-6 py-3 rounded-lg font-bold hover:brightness-110 transition-all">Download Compliance Kit</button>
+<a class="bg-primary text-background-dark px-6 py-3 rounded-lg font-bold hover:brightness-110 transition-all inline-block" href="{{ route('contact') }}#request-pickup">Request Compliance Info</a>
 </div>
 <div class="lg:w-2/3 grid sm:grid-cols-2 gap-6">
 <div class="about-card bg-slate-800 p-8 rounded-2xl border border-slate-700">

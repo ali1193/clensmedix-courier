@@ -12,3 +12,6 @@
     --color-background-light: #f6f8f8;
     --color-background-dark: #12201f;
 }
+
+/* Force dark mode to be class-based so it doesn't automatically trigger on user OS preference */
+@variant dark (&:is(.dark *));

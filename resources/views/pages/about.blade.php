@@ -10,12 +10,12 @@
                 Trusted medical courier services delivering healthcare logistics with precision, reliability, and care.
             </p>
 <div class="mt-8">
-<button class="bg-primary text-background-dark px-8 py-4 rounded-lg font-bold text-lg hover:bg-primary/90 transition-all">Learn More</button>
+<a class="bg-primary text-background-dark px-8 py-4 rounded-lg font-bold text-lg hover:bg-primary/90 transition-all inline-block" href="#who-we-are">Learn More</a>
 </div>
 </div>
 </section>
 <!-- Company Introduction -->
-<section class="py-20 px-6 lg:px-20 max-w-7xl mx-auto">
+<section class="py-20 px-6 lg:px-20 max-w-7xl mx-auto" id="who-we-are">
 <div class="grid md:grid-cols-2 gap-12 items-center">
 <div class="rounded-2xl overflow-hidden shadow-2xl">
 <img alt="Professional medical courier handling sensitive delivery" class="w-full h-[450px] object-cover" data-alt="Healthcare professional handing over medical sample package" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0_kbgrObheWYS8Qx-DJhk7oQ9Qy21vA1ixUGqrOePcji48UlDh-Bf-JF2iu_nKPUgGe86B5d_OlHpOgDHoMvqR6qO3VYY54fFq6zVOG8dfe_NKdSXZnugBofkolLCXeQGl07WtcEdNTWT-Yxma3IldND5MIDfq0xvIyMFwHV5IA9BNlI8cHDpf7LXtMZCvNOpBaE9Iwcq8jA6KNOyV2Y_X5rtcbchjgLki2oSkk62suDDAqUnD8rVLk9U6HnEz551xneCF6Quzdo"/>
@@ -128,15 +128,7 @@
 </ul>
 </div>
 <div class="rounded-2xl overflow-hidden h-[400px] border-4 border-white dark:border-slate-800 shadow-2xl">
-<div class="w-full h-full bg-slate-200 dark:bg-slate-700 flex flex-col items-center justify-center relative">
-<!-- Placeholder Map Illustration -->
-<div class="absolute inset-0 bg-cover bg-center opacity-50 grayscale" data-alt="Stylized map showing Houston and surrounding suburbs" data-location="Houston, TX" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA-KWSXOWcXU9ZqWhcmM3daPC75rH60Px-5IduZ8WE5y5a1HkEtm3O_yPSXc_ay4dgFUOU-nVeRHwtDYEaRbqpF-KJzanX4ZIBqoQVx900f530uZqN8S99IyfA-dSPErInEngTsrUUKxWc6Jjzjn2Y2rn33eqZAXrJ5ouOOm4TDVqTu3T1ds5iv_03g5Z6OaAB8K8UkBNhvYItxTH58KtBVz5SAKxr3ITMVoNsHf28Q3ymwkuY6kjUTfS4GZdOUnyEWuaFRdrP08z4');"></div>
-<div class="relative z-10 text-center p-8 bg-white/90 dark:bg-background-dark/90 rounded-xl backdrop-blur-sm border border-primary/20">
-<span class="material-symbols-outlined text-5xl text-primary mb-2">map</span>
-<p class="font-bold text-xl">Serving the Houston Region</p>
-<p class="text-sm opacity-70">Reliable logistics across Texas medical hubs</p>
-</div>
-</div>
+<img alt="ClensMedix courier van parked outside a medical facility" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWh5Ba86x6ZJjvMc3Z5xHZne2SHZaNHWQltijvhgseVdXKjFQ-IwoduEunfg4CMOPGNTUQ0bp_T94nSTuKfnrsLy6wrDmwUcTZo7IAM0H0xqEdRPJO0-ZmD9RURultYZTp3poGS1rC616SNSrcBywjN7ALZH1oRvCUXdZ9k-VcRlg_MLjV6p3QJOXj6ynadKWZBi1YBwbsHepPNIWU0R7vrDwqqqXFGUzxftqJ5iNEOI6O0ESxLbEwl5axC7209JWc2clKzBbY86s">
 </div>
 </div>
 </section>
@@ -145,14 +137,14 @@
 <div class="max-w-4xl mx-auto text-center">
 <h2 class="text-4xl font-black mb-8">Need a Reliable Medical Courier Partner?</h2>
 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-<button class="bg-primary text-background-dark px-10 py-4 rounded-lg font-bold text-lg hover:scale-105 transition-transform flex items-center justify-center gap-2">
+<a class="bg-primary text-background-dark px-10 py-4 rounded-lg font-bold text-lg hover:scale-105 transition-transform flex items-center justify-center gap-2" href="tel:832-466-1443">
 <span class="material-symbols-outlined">call</span>
                     Call 832-466-1443
-                </button>
-<button class="border-2 border-primary text-primary px-10 py-4 rounded-lg font-bold text-lg hover:bg-primary/10 transition-colors flex items-center justify-center gap-2">
+                </a>
+<a class="border-2 border-primary text-primary px-10 py-4 rounded-lg font-bold text-lg hover:bg-primary/10 transition-colors flex items-center justify-center gap-2" href="{{ route('contact') }}#request-pickup">
 <span class="material-symbols-outlined">send</span>
                     Request a Pickup
-                </button>
+                </a>
 </div>
 </div>
 </section>
