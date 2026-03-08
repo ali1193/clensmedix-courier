@@ -7,13 +7,20 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin | {{ $siteName }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="h-full bg-slate-950 text-slate-100">
     <div class="min-h-screen flex">
         <aside class="w-64 bg-slate-900 border-r border-slate-800 hidden md:flex flex-col">
+            @php
+                $configuredLogo = \App\Models\Setting::get('site.logo_path');
+                $logoUrl = $configuredLogo ? asset($configuredLogo) : asset('images/logo.png');
+            @endphp
             <div class="px-6 py-5 border-b border-slate-800 flex items-center gap-3">
-                <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-8 w-auto">
+                <img src="{{ $logoUrl }}" alt="Logo" class="h-8 w-auto">
                 <div>
                     <p class="font-bold text-sm uppercase tracking-[0.2em] text-slate-500">Admin</p>
                     <p class="text-sm font-semibold text-slate-100">{{ $siteName }}</p>
@@ -27,6 +34,10 @@
                 <a href="{{ route('admin.settings.edit') }}" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-800 {{ request()->routeIs('admin.settings.*') ? 'bg-slate-800 text-white' : 'text-slate-300' }}">
                     <span class="material-symbols-outlined text-base">settings</span>
                     Settings
+                </a>
+                <a href="{{ route('admin.content.index') }}" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-800 {{ request()->routeIs('admin.content.*') ? 'bg-slate-800 text-white' : 'text-slate-300' }}">
+                    <span class="material-symbols-outlined text-base">edit_note</span>
+                    Content
                 </a>
                 <a href="{{ route('admin.services.index') }}" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-800 {{ request()->routeIs('admin.services.*') ? 'bg-slate-800 text-white' : 'text-slate-300' }}">
                     <span class="material-symbols-outlined text-base">inventory_2</span>
@@ -48,7 +59,7 @@
         <main class="flex-1 min-w-0 bg-slate-950">
             <header class="md:hidden px-4 py-3 border-b border-slate-800 flex items-center justify-between">
                 <div class="flex items-center gap-2">
-                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-8 w-auto">
+                    <img src="{{ $logoUrl }}" alt="Logo" class="h-8 w-auto">
                     <span class="font-semibold text-sm">{{ $siteName }} Admin</span>
                 </div>
             </header>

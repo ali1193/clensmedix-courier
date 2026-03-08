@@ -169,7 +169,7 @@
 <h2 class="text-2xl font-black text-slate-900 dark:text-white mb-2">Operating Hours</h2>
 <p class="text-slate-600 dark:text-slate-400 text-lg">Our standard operations run during business hours for scheduled routes.</p>
 <div class="mt-4 inline-block bg-primary/10 px-4 py-2 rounded-full">
-<span class="text-slate-900 dark:text-white font-bold">Monday – Friday: 8:00 AM – 6:00 PM</span>
+<span class="text-slate-900 dark:text-white font-bold">24 hours a day, 7 days a week</span>
 </div>
 </div>
 </div>

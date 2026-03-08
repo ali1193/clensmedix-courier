@@ -2,18 +2,23 @@
 <section class="hero-section relative overflow-hidden pt-16 pb-24 px-6">
     <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
         <div class="z-10">
+            @php
+                $heroBadge = \App\Models\ContentBlock::get('home.hero.badge', 'Available 24/7 in Houston', 'Home hero badge');
+                $heroTitle = \App\Models\ContentBlock::get('home.hero.title', 'Reliable Medical Courier Services You Can Trust.', 'Home hero title');
+                $heroSubtitle = \App\Models\ContentBlock::get('home.hero.subtitle', 'Delivering Excellence, One Mile at a Time. Secure, temperature-controlled transport for critical healthcare needs, serving hospitals, labs, and pharmacies.', 'Home hero subtitle');
+            @endphp
             <div class="hero-badge inline-flex items-center gap-2 bg-primary/10 border border-primary/20 px-3 py-1 rounded-full text-primary text-xs font-bold uppercase tracking-wider mb-6">
                 <span class="relative flex h-2 w-2">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
                 </span>
-                Available 24/7 in Houston
+                {{ $heroBadge }}
             </div>
             <h1 class="hero-title text-5xl md:text-6xl font-black leading-tight tracking-tight mb-6">
-                Reliable Medical Courier Services <span class="text-primary">You Can Trust.</span>
+                {!! str_replace('You Can Trust.', '<span class="text-primary">You Can Trust.</span>', e($heroTitle)) !!}
             </h1>
             <p class="hero-subtitle text-lg text-slate-600 dark:text-slate-400 mb-10 max-w-xl">
-                Delivering Excellence, One Mile at a Time. Secure, temperature-controlled transport for critical healthcare needs, serving hospitals, labs, and pharmacies.
+                {{ $heroSubtitle }}
             </p>
             @php
                 $heroPhone = \App\Models\Setting::get('contact.phone', '832-466-1443');

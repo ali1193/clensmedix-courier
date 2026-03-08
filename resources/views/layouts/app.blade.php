@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ClensMedix Courier LLC | Reliable Medical Logistics</title>
 
-    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png">
+    @php
+        $configuredLogo = \App\Models\Setting::get('site.logo_path');
+        $faviconPath = $configuredLogo ?: 'images/logo.png';
+    @endphp
+    <link rel="icon" href="{{ asset($faviconPath) }}" type="image/png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,8 +24,12 @@
     <!-- Header / Navigation -->
     <header class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-primary/10 px-6 py-4">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
+            @php
+                $configuredLogo = \App\Models\Setting::get('site.logo_path');
+                $logoUrl = $configuredLogo ? asset($configuredLogo) : asset('images/logo.png');
+            @endphp
             <div class="flex items-center gap-2">
-                <img src="{{ asset('images/logo.png') }}" alt="ClensMedix Courier Logo" class="h-14 w-auto">
+                <img src="{{ $logoUrl }}" alt="ClensMedix Courier Logo" class="h-14 w-auto">
             </div>
             <nav class="hidden md:flex items-center gap-8">
                 <a class="text-sm font-semibold hover:text-primary transition-colors {{ request()->routeIs('home') ? 'text-primary' : '' }}" href="{{ route('home') }}">Home</a>

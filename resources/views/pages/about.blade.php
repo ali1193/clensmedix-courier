@@ -5,9 +5,13 @@
 <section class="relative w-full h-[500px] flex items-center justify-center overflow-hidden">
 <div class="absolute inset-0 bg-cover bg-center" data-alt="Modern medical courier delivery van on city street" style="background-image: linear-gradient(rgba(18, 32, 31, 0.7), rgba(18, 32, 31, 0.7)), url('https://lh3.googleusercontent.com/aida-public/AB6AXuAWh5Ba86x6ZJjvMc3Z5xHZne2SHZaNHWQltijvhgseVdXKjFQ-IwoduEunfg4CMOPGNTUQ0bp_T94nSTuKfnrsLy6wrDmwUcTZo7IAM0H0xqEdRPJO0-ZmD9RURultYZTp3poGS1rC616SNSrcBywjN7ALZH1oRvCUXdZ9k-VcRlg_MLjV6p3QJOXj6ynadKWZBi1YBwbsHepPNIWU0R7vrDwqqqXFGUzxftqJ5iNEOI6O0ESxLbEwl5axC7209JWc2clKzBbY86s');"></div>
 <div class="relative z-10 text-center px-6 max-w-4xl">
-<h1 class="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight leading-tight">About ClensMedix Courier</h1>
+@php
+    $aboutHeroTitle = \App\Models\ContentBlock::get('about.hero.title', 'About ClensMedix Courier', 'About hero title');
+    $aboutHeroSubtitle = \App\Models\ContentBlock::get('about.hero.subtitle', 'Trusted medical courier services delivering healthcare logistics with precision, reliability, and care.', 'About hero subtitle');
+@endphp
+<h1 class="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight leading-tight">{{ $aboutHeroTitle }}</h1>
 <p class="text-lg md:text-xl text-slate-200 font-medium max-w-2xl mx-auto">
-                Trusted medical courier services delivering healthcare logistics with precision, reliability, and care.
+                {{ $aboutHeroSubtitle }}
             </p>
 <div class="mt-8">
 <a class="bg-primary text-background-dark px-8 py-4 rounded-lg font-bold text-lg hover:bg-primary/90 transition-all inline-block" href="#who-we-are">Learn More</a>
@@ -21,14 +25,19 @@
 <img alt="Professional medical courier handling sensitive delivery" class="w-full h-[450px] object-cover" data-alt="Healthcare professional handing over medical sample package" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0_kbgrObheWYS8Qx-DJhk7oQ9Qy21vA1ixUGqrOePcji48UlDh-Bf-JF2iu_nKPUgGe86B5d_OlHpOgDHoMvqR6qO3VYY54fFq6zVOG8dfe_NKdSXZnugBofkolLCXeQGl07WtcEdNTWT-Yxma3IldND5MIDfq0xvIyMFwHV5IA9BNlI8cHDpf7LXtMZCvNOpBaE9Iwcq8jA6KNOyV2Y_X5rtcbchjgLki2oSkk62suDDAqUnD8rVLk9U6HnEz551xneCF6Quzdo"/>
 </div>
 <div class="flex flex-col gap-6">
-<span class="text-primary font-bold tracking-widest uppercase text-sm">Professional Logistics</span>
-<h2 class="text-3xl md:text-4xl font-bold leading-tight">Who We Are</h2>
+@php
+    $aboutBadge = \App\Models\ContentBlock::get('about.who.badge', 'Professional Logistics', 'About who we are badge');
+    $aboutWhoTitle = \App\Models\ContentBlock::get('about.who.title', 'Who We Are', 'About who we are title');
+    $aboutWhoBody1 = \App\Models\ContentBlock::get('about.who.body1', 'ClensMedix Courier LLC is a specialized medical courier service dedicated to providing reliable and secure transportation for healthcare facilities. We partner with hospitals, laboratories, pharmacies, and clinics to ensure critical medical deliveries arrive safely and on time.', 'About who we are paragraph 1');
+    $aboutWhoBody2 = \App\Models\ContentBlock::get('about.who.body2', 'Our mission is to support healthcare providers with dependable courier solutions that prioritize speed, accuracy, and compliance with medical transport standards. We understand the weight of every package we carry.', 'About who we are paragraph 2');
+@endphp
+<span class="text-primary font-bold tracking-widest uppercase text-sm">{{ $aboutBadge }}</span>
+<h2 class="text-3xl md:text-4xl font-bold leading-tight">{{ $aboutWhoTitle }}</h2>
 <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
-                    ClensMedix Courier LLC is a specialized medical courier service dedicated to providing reliable and secure transportation for healthcare facilities. We partner with hospitals, laboratories, pharmacies, and clinics to ensure critical medical deliveries arrive safely and on time.
+                    {{ $aboutWhoBody1 }}
                 </p>
 <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
-                    Our mission is to support healthcare providers with dependable courier solutions that prioritize speed, accuracy, and compliance with medical transport standards. We understand the weight of every package we carry.
-                </p>
+                    {{ $aboutWhoBody2 }}
 </div>
 </div>
 </section>

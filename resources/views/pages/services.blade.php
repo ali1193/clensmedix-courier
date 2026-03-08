@@ -120,6 +120,28 @@
 </div>
 </div>
 </div>
+
+@isset($services)
+@if ($services->isNotEmpty())
+<div class="mt-16 border-t border-slate-200 dark:border-slate-800 pt-12">
+    <h3 class="text-2xl font-black text-slate-900 dark:text-white mb-6 text-center">Additional Services</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        @foreach ($services as $service)
+            <div class="bg-background-light dark:bg-slate-900 rounded-2xl border border-slate-200/70 dark:border-slate-800 p-6 flex flex-col gap-3">
+                <h4 class="text-xl font-bold text-slate-900 dark:text-white">{{ $service->name }}</h4>
+                @if ($service->category)
+                    <p class="text-xs uppercase tracking-[0.18em] text-primary font-semibold">{{ $service->category }}</p>
+                @endif
+                @if ($service->excerpt)
+                    <p class="text-sm text-slate-600 dark:text-slate-400">{{ $service->excerpt }}</p>
+                @endif
+            </div>
+        @endforeach
+    </div>
+</div>
+@endif
+@endisset
+</div>
 </div>
 </section>
 <!-- Why Choose ClensMedix -->

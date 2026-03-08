@@ -3,11 +3,16 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Models\Service;
+use App\Models\Setting;
+use App\Mail\ContactSubmissionNotification;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\ContactSubmissionController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ContentController;
 use App\Http\Middleware\EnsureAdmin;
 
 Route::get('/', function () {
@@ -19,7 +24,9 @@ Route::get('/about', function () {
 })->name('about');
 
 Route::get('/services', function () {
-    return view('pages.services');
+    $services = Service::active()->orderBy('display_order')->orderBy('name')->get();
+
+    return view('pages.services', compact('services'));
 })->name('services');
 
 Route::get('/contact', function () {
@@ -51,6 +58,43 @@ Route::post('/contact', function (Request $request) {
         'message' => $data['message'] ?? null,
     ]);
 
+    // Configure mailer from settings if provided
+    $smtpHost = Setting::get('smtp.host');
+    if ($smtpHost) {
+        $encryption = Setting::get('smtp.encryption');
+
+        // Map human-friendly encryption values to supported schemes
+        $scheme = match ($encryption) {
+            'ssl' => 'smtps',
+            'tls' => 'smtp',
+            'smtp', 'smtps' => $encryption,
+            default => config('mail.mailers.smtp.scheme'),
+        };
+
+        config([
+            'mail.default' => 'smtp',
+            'mail.mailers.smtp.host' => $smtpHost,
+            'mail.mailers.smtp.port' => Setting::get('smtp.port') ?: config('mail.mailers.smtp.port'),
+            'mail.mailers.smtp.username' => Setting::get('smtp.username') ?: config('mail.mailers.smtp.username'),
+            'mail.mailers.smtp.password' => Setting::get('smtp.password') ?: config('mail.mailers.smtp.password'),
+            'mail.mailers.smtp.scheme' => $scheme,
+            'mail.from.address' => Setting::get('smtp.from_email') ?: config('mail.from.address'),
+            'mail.from.name' => Setting::get('smtp.from_name') ?: config('mail.from.name'),
+        ]);
+    }
+
+    $toAddress = Setting::get('contact.email') ?: config('mail.from.address');
+
+    try {
+        if ($toAddress) {
+            Mail::to($toAddress)->send(new ContactSubmissionNotification($submission));
+        }
+    } catch (\Throwable $e) {
+        Log::error('Failed to send contact notification email', [
+            'error' => $e->getMessage(),
+        ]);
+    }
+
     Log::info('Website inquiry submitted', [
         'name' => $data['name'],
         'phone' => $data['phone'] ?? null,
@@ -80,6 +124,9 @@ Route::middleware(['auth', EnsureAdmin::class])
 
         Route::get('/settings', [SettingsController::class, 'edit'])->name('settings.edit');
         Route::post('/settings', [SettingsController::class, 'update'])->name('settings.update');
+
+        Route::get('/content', [ContentController::class, 'index'])->name('content.index');
+        Route::post('/content', [ContentController::class, 'update'])->name('content.update');
 
         Route::resource('services', ServiceController::class)->except(['show']);
 
