@@ -39,7 +39,7 @@
             </div>
         @endif
 
-        @if ($errors->any())
+        @if (isset($errors) && $errors->any())
             <div class="mb-8 rounded-xl border border-red-300 dark:border-red-800 bg-red-50 dark:bg-red-900/20 p-4" role="alert">
                 <p class="font-semibold text-red-800 dark:text-red-200 mb-2">Please correct the following errors:</p>
                 <ul class="list-disc list-inside space-y-1 text-sm text-red-700 dark:text-red-300">
@@ -51,7 +51,7 @@
         @endif
 
         @unless (session('success'))
-        <form action="{{ route('careers.apply.submit') }}" method="POST" enctype="multipart/form-data" class="space-y-8" novalidate>
+        <form action="{{ route('careers.apply.submit') }}" method="POST" enctype="multipart/form-data" class="space-y-8" id="contractor-application-form" novalidate>
             @csrf
 
             {{-- Applicant Information --}}
@@ -275,8 +275,12 @@
             </fieldset>
 
             <div class="pt-4">
-                <button class="w-full bg-primary text-slate-900 py-4 rounded-xl text-lg font-bold hover:shadow-lg hover:shadow-primary/20 transition-all" type="submit">
-                    Submit Application
+                <button id="submit-application-btn" class="w-full bg-primary text-slate-900 py-4 rounded-xl text-lg font-bold hover:shadow-lg hover:shadow-primary/20 transition-all disabled:opacity-70 disabled:cursor-not-allowed" type="submit">
+                    <span id="submit-application-label">Submit Application</span>
+                    <span id="submit-application-loading" class="hidden inline-flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined animate-spin text-xl" aria-hidden="true">progress_activity</span>
+                        Submitting…
+                    </span>
                 </button>
                 <p class="text-center text-sm text-slate-500 mt-4">
                     <a href="{{ route('careers') }}" class="text-primary hover:underline">Back to Careers</a>
@@ -291,6 +295,19 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contractor-application-form');
+    const submitBtn = document.getElementById('submit-application-btn');
+    const submitLabel = document.getElementById('submit-application-label');
+    const submitLoading = document.getElementById('submit-application-loading');
+
+    if (form && submitBtn) {
+        form.addEventListener('submit', () => {
+            submitBtn.disabled = true;
+            submitLabel.classList.add('hidden');
+            submitLoading.classList.remove('hidden');
+        });
+    }
+
     document.querySelectorAll('[data-toggle-target]').forEach(radio => {
         radio.addEventListener('change', () => {
             const targetId = radio.dataset.toggleTarget;

@@ -9,6 +9,7 @@ use App\Models\Setting;
 use App\Mail\ContactSubmissionNotification;
 use App\Mail\ContractorApplicationNotification;
 use App\Models\ContractorApplication;
+use App\Support\MailConfigurator;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\ServiceController;
@@ -44,6 +45,12 @@ Route::get('/careers/apply', function () {
 })->name('careers.apply');
 
 Route::post('/careers/apply', function (Request $request) {
+    if (empty($request->all()) && (int) $request->server('CONTENT_LENGTH') > 0) {
+        return back()->withErrors([
+            'upload' => 'Your upload is too large. Please use smaller files (under 5MB each) and try again.',
+        ])->withInput();
+    }
+
     $data = $request->validate([
         'full_name' => ['required', 'string', 'max:100'],
         'email' => ['required', 'email', 'max:150'],
@@ -118,41 +125,29 @@ Route::post('/careers/apply', function (Request $request) {
         'resume_path' => $resumePath,
     ]);
 
-    $smtpHost = Setting::get('smtp.host');
-    if ($smtpHost) {
-        $encryption = Setting::get('smtp.encryption');
+    $applicationId = $application->id;
 
-        $scheme = match ($encryption) {
-            'ssl' => 'smtps',
-            'tls' => 'smtp',
-            'smtp', 'smtps' => $encryption,
-            default => config('mail.mailers.smtp.scheme'),
-        };
+    dispatch(function () use ($applicationId) {
+        try {
+            $application = ContractorApplication::find($applicationId);
+            if (! $application) {
+                return;
+            }
 
-        config([
-            'mail.default' => 'smtp',
-            'mail.mailers.smtp.host' => $smtpHost,
-            'mail.mailers.smtp.port' => Setting::get('smtp.port') ?: config('mail.mailers.smtp.port'),
-            'mail.mailers.smtp.username' => Setting::get('smtp.username') ?: config('mail.mailers.smtp.username'),
-            'mail.mailers.smtp.password' => Setting::get('smtp.password') ?: config('mail.mailers.smtp.password'),
-            'mail.mailers.smtp.scheme' => $scheme,
-            'mail.from.address' => Setting::get('smtp.from_email') ?: config('mail.from.address'),
-            'mail.from.name' => Setting::get('smtp.from_name') ?: config('mail.from.name'),
-        ]);
-    }
+            MailConfigurator::apply();
 
-    $toAddress = Setting::get('contact.email') ?: config('mail.from.address');
+            $toAddress = Setting::get('contact.email') ?: config('mail.from.address');
 
-    try {
-        if ($toAddress) {
-            Mail::to($toAddress)->send(new ContractorApplicationNotification($application->fresh()));
+            if ($toAddress) {
+                Mail::to($toAddress)->send(new ContractorApplicationNotification($application));
+            }
+        } catch (\Throwable $e) {
+            Log::error('Failed to send contractor application notification email', [
+                'error' => $e->getMessage(),
+                'application_id' => $applicationId,
+            ]);
         }
-    } catch (\Throwable $e) {
-        Log::error('Failed to send contractor application notification email', [
-            'error' => $e->getMessage(),
-            'application_id' => $application->id,
-        ]);
-    }
+    })->afterResponse();
 
     Log::info('Contractor application submitted', [
         'application_id' => $application->id,
