@@ -50,6 +50,8 @@
             </div>
         @endif
 
+        <div id="client-upload-error" class="hidden mb-8 rounded-xl border border-red-300 dark:border-red-800 bg-red-50 dark:bg-red-900/20 p-4 text-sm text-red-700 dark:text-red-300" role="alert"></div>
+
         @unless (session('success'))
         <form action="{{ route('careers.apply.submit') }}" method="POST" enctype="multipart/form-data" class="space-y-8" id="contractor-application-form" novalidate>
             @csrf
@@ -283,6 +285,9 @@
                     </span>
                 </button>
                 <p class="text-center text-sm text-slate-500 mt-4">
+                    Files must be under 5MB each. Large uploads may take a moment while they transfer.
+                </p>
+                <p class="text-center text-sm text-slate-500 mt-2">
                     <a href="{{ route('careers') }}" class="text-primary hover:underline">Back to Careers</a>
                 </p>
             </div>
@@ -300,8 +305,44 @@ document.addEventListener('DOMContentLoaded', () => {
     const submitLabel = document.getElementById('submit-application-label');
     const submitLoading = document.getElementById('submit-application-loading');
 
+    const maxFileSize = 5 * 1024 * 1024;
+    const maxTotalSize = 30 * 1024 * 1024;
+    const clientUploadError = document.getElementById('client-upload-error');
+
     if (form && submitBtn) {
-        form.addEventListener('submit', () => {
+        form.addEventListener('submit', (event) => {
+            const fileInputs = form.querySelectorAll('input[type="file"]');
+            let totalSize = 0;
+
+            for (const input of fileInputs) {
+                for (const file of input.files) {
+                    totalSize += file.size;
+
+                    if (file.size > maxFileSize) {
+                        event.preventDefault();
+                        submitBtn.disabled = false;
+                        submitLabel.classList.remove('hidden');
+                        submitLoading.classList.add('hidden');
+                        clientUploadError.textContent = `"${file.name}" is too large. Each file must be under 5MB.`;
+                        clientUploadError.classList.remove('hidden');
+                        clientUploadError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        return;
+                    }
+                }
+            }
+
+            if (totalSize > maxTotalSize) {
+                event.preventDefault();
+                submitBtn.disabled = false;
+                submitLabel.classList.remove('hidden');
+                submitLoading.classList.add('hidden');
+                clientUploadError.textContent = 'Total upload size is too large. Please use smaller files and try again.';
+                clientUploadError.classList.remove('hidden');
+                clientUploadError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+
+            clientUploadError.classList.add('hidden');
             submitBtn.disabled = true;
             submitLabel.classList.add('hidden');
             submitLoading.classList.remove('hidden');
