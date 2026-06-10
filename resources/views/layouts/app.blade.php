@@ -36,6 +36,7 @@
                 <a class="text-sm font-semibold hover:text-primary transition-colors {{ request()->routeIs('about') ? 'text-primary' : '' }}" href="{{ route('about') }}">About Us</a>
                 <a class="text-sm font-semibold hover:text-primary transition-colors {{ request()->routeIs('services') ? 'text-primary' : '' }}" href="{{ route('services') }}">Services</a>
                 <a class="text-sm font-semibold hover:text-primary transition-colors {{ request()->routeIs('contact') ? 'text-primary' : '' }}" href="{{ route('contact') }}">Contact</a>
+                <a class="text-sm font-semibold hover:text-primary transition-colors {{ request()->routeIs('careers*') ? 'text-primary' : '' }}" href="{{ route('careers') }}">Careers</a>
             </nav>
             @php
                 $globalPhone = \App\Models\Setting::get('contact.phone', '832-466-1443');
@@ -56,6 +57,7 @@
             <a class="text-lg font-semibold hover:text-primary transition-colors {{ request()->routeIs('about') ? 'text-primary' : '' }}" href="{{ route('about') }}">About Us</a>
             <a class="text-lg font-semibold hover:text-primary transition-colors {{ request()->routeIs('services') ? 'text-primary' : '' }}" href="{{ route('services') }}">Services</a>
             <a class="text-lg font-semibold hover:text-primary transition-colors {{ request()->routeIs('contact') ? 'text-primary' : '' }}" href="{{ route('contact') }}">Contact</a>
+            <a class="text-lg font-semibold hover:text-primary transition-colors {{ request()->routeIs('careers*') ? 'text-primary' : '' }}" href="{{ route('careers') }}">Careers</a>
             <div class="pt-4 border-t border-slate-200 dark:border-slate-800">
                 <a href="{{ route('contact') }}" class="sm:hidden block w-full bg-primary text-background-dark px-5 py-3.5 rounded-lg font-bold text-center text-base hover:brightness-95 transition-all">Request a Pickup</a>
             </div>

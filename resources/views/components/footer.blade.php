@@ -21,7 +21,7 @@
 <ul class="space-y-4 text-sm">
 <li><a class="hover:text-primary" href="{{ route('about') }}">About Us</a></li>
 <li><a class="hover:text-primary" href="{{ route('services') }}">Compliance</a></li>
-<li><a class="hover:text-primary" href="{{ route('contact') }}">Careers</a></li>
+<li><a class="hover:text-primary" href="{{ route('careers') }}">Careers</a></li>
 <li><a class="hover:text-primary" href="{{ route('contact') }}">Contact</a></li>
 </ul>
 </div>
