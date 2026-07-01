@@ -279,9 +279,11 @@
             <div class="pt-4">
                 <button id="submit-application-btn" class="w-full bg-primary text-slate-900 py-4 rounded-xl text-lg font-bold hover:shadow-lg hover:shadow-primary/20 transition-all disabled:opacity-70 disabled:cursor-not-allowed" type="submit">
                     <span id="submit-application-label">Submit Application</span>
-                    <span id="submit-application-loading" class="hidden inline-flex items-center justify-center gap-2">
-                        <span class="material-symbols-outlined animate-spin text-xl" aria-hidden="true">progress_activity</span>
-                        Submitting…
+                    <span id="submit-application-loading" class="hidden">
+                        <span class="inline-flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined animate-spin text-xl" aria-hidden="true">progress_activity</span>
+                            Submitting…
+                        </span>
                     </span>
                 </button>
                 <p class="text-center text-sm text-slate-500 mt-4">
@@ -309,6 +311,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const maxTotalSize = 30 * 1024 * 1024;
     const clientUploadError = document.getElementById('client-upload-error');
 
+    const resetSubmitButton = () => {
+        submitBtn.disabled = false;
+        submitLabel.classList.remove('hidden');
+        submitLoading.classList.add('hidden');
+    };
+
+    const setSubmitting = () => {
+        submitBtn.disabled = true;
+        submitLabel.classList.add('hidden');
+        submitLoading.classList.remove('hidden');
+    };
+
     if (form && submitBtn) {
         form.addEventListener('submit', (event) => {
             const fileInputs = form.querySelectorAll('input[type="file"]');
@@ -320,9 +334,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     if (file.size > maxFileSize) {
                         event.preventDefault();
-                        submitBtn.disabled = false;
-                        submitLabel.classList.remove('hidden');
-                        submitLoading.classList.add('hidden');
+                        resetSubmitButton();
                         clientUploadError.textContent = `"${file.name}" is too large. Each file must be under 5MB.`;
                         clientUploadError.classList.remove('hidden');
                         clientUploadError.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -333,9 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (totalSize > maxTotalSize) {
                 event.preventDefault();
-                submitBtn.disabled = false;
-                submitLabel.classList.remove('hidden');
-                submitLoading.classList.add('hidden');
+                resetSubmitButton();
                 clientUploadError.textContent = 'Total upload size is too large. Please use smaller files and try again.';
                 clientUploadError.classList.remove('hidden');
                 clientUploadError.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -343,9 +353,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             clientUploadError.classList.add('hidden');
-            submitBtn.disabled = true;
-            submitLabel.classList.add('hidden');
-            submitLoading.classList.remove('hidden');
+            setSubmitting();
+        });
+
+        window.addEventListener('pageshow', () => {
+            resetSubmitButton();
         });
     }
 

@@ -7,6 +7,7 @@ use App\Models\ContractorApplication;
 use App\Models\Setting;
 use App\Support\DeferUntilResponseSent;
 use App\Support\MailConfigurator;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -117,6 +118,20 @@ class CareersApplicationController extends Controller
             return redirect()
                 ->route('careers.apply')
                 ->with('success', 'Thank you! Your application has been submitted successfully. Our team will review your information and contact you if there is a match.');
+        } catch (QueryException $e) {
+            if (str_contains($e->getMessage(), 'contractor_applications')) {
+                Log::error('Contractor applications table missing on server', [
+                    'error' => $e->getMessage(),
+                ]);
+
+                return back()
+                    ->withErrors([
+                        'submission' => 'The application system is not fully set up on the server yet. Please contact Clensmedix directly while we resolve this.',
+                    ])
+                    ->withInput();
+            }
+
+            throw $e;
         } catch (Throwable $e) {
             Log::error('Contractor application submission failed', [
                 'error' => $e->getMessage(),
